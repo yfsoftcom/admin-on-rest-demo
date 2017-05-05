@@ -83,7 +83,7 @@ class Login extends Component {
                         </div>
                         <form onSubmit={handleSubmit(this.login)}>
                             <div style={styles.form}>
-                                <p style={styles.hint}>Hint: demo / demo</p>
+                                <p style={styles.hint}>Welcome</p>
                                 <div style={styles.input} >
                                     <Field
                                         name="username"

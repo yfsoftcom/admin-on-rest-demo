@@ -16,10 +16,10 @@ import { ReviewIcon } from './reviews';
 const items = [
     { name: 'customers', icon: <VisitorIcon /> },
     { name: 'segments', icon: <LabelIcon /> },
-    { name: 'commands', icon: <CommandIcon /> },
+    // { name: 'commands', icon: <CommandIcon /> },
     { name: 'products', icon: <ProductIcon /> },
-    { name: 'categories', icon: <CategoryIcon /> },
-    { name: 'reviews', icon: <ReviewIcon /> },
+    // { name: 'categories', icon: <CategoryIcon /> },
+    // { name: 'reviews', icon: <ReviewIcon /> },
 ];
 
 const styles = {
@@ -33,7 +33,9 @@ const styles = {
 
 const Menu = ({ onMenuTap, translate, logout }) => (
     <div style={styles.main}>
+        { /*仪表板*/ }
         <DashboardMenuItem onTouchTap={onMenuTap} />
+
         {items.map(item => (
             <MenuItem
                 key={item.name}
@@ -43,12 +45,13 @@ const Menu = ({ onMenuTap, translate, logout }) => (
                 onTouchTap={onMenuTap}
             />
         ))}
-        <MenuItem
+        { /*设置*/ }
+        {/*<MenuItem
             containerElement={<Link to="/configuration" />}
             primaryText={translate('pos.configuration')}
             leftIcon={<SettingsIcon />}
             onTouchTap={onMenuTap}
-        />
+        />*/}
         {logout}
     </div>
 );

@@ -46,7 +46,7 @@ class Dashboard extends Component {
                 this.setState({
                     revenue: revenue.toLocaleString(undefined, {
                         style: 'currency',
-                        currency: 'USD',
+                        currency: 'RMB',
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0,
                     }),

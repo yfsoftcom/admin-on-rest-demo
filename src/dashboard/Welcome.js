@@ -14,9 +14,9 @@ export default translate(({ style, translate }) => (
             subtitle={translate('pos.dashboard.welcome.subtitle')}
             avatar={<Avatar backgroundColor="#FFEB3B" icon={<LightBulbIcon />} />}
         />
-        <CardActions style={{ textAlign: 'right' }}>
+        {/*<CardActions style={{ textAlign: 'right' }}>
             <FlatButton label={translate('pos.dashboard.welcome.aor_button')} icon={<HomeIcon />} href="https://marmelab.com/admin-on-rest/" />
             <FlatButton label={translate('pos.dashboard.welcome.demo_button')} icon={<CodeIcon />} href="https://github.com/marmelab/admin-on-rest-demo" />
-        </CardActions>
+        </CardActions>*/}
     </Card>
 ));
