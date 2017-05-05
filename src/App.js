@@ -13,7 +13,6 @@ import Menu from './Menu';
 import { Dashboard } from './dashboard';
 import customRoutes from './routes';
 import translations from './i18n';
-console.log(translations)
 
 import { VisitorList, VisitorEdit, VisitorDelete, VisitorIcon } from './visitors';
 import { CommandList, CommandEdit, CommandIcon } from './commands';
@@ -36,7 +35,7 @@ class App extends Component {
     render() {
         return (
             <Admin
-                title="Posters Galore Admin"
+                title="管理后台"
                 restClient={restClient}
                 customReducers={{ theme: themeReducer }}
                 customSagas={sagas}

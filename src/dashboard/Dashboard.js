@@ -24,45 +24,45 @@ class Dashboard extends Component {
     componentDidMount() {
         const d = new Date();
         d.setDate(d.getDate() - 30);
-        restClient(GET_LIST, 'commands', {
-                filter: { date_gte: d.toISOString() },
-                sort: { field: 'date', order: 'DESC' },
-                pagination: { page: 1, perPage: 50 },
-            })
-            .then(response => response.data
-                .filter(order => order.status !== 'cancelled')
-                .reduce((stats, order) => {
-                    if (order.status !== 'cancelled') {
-                        stats.revenue += order.total;
-                        stats.nbNewOrders++;
-                    }
-                    if (order.status === 'ordered') {
-                        stats.pendingOrders.push(order);
-                    }
-                    return stats;
-                }, { revenue: 0, nbNewOrders: 0, pendingOrders: [] })
-            )
-            .then(({ revenue, nbNewOrders, pendingOrders }) => {
-                this.setState({
-                    revenue: revenue.toLocaleString(undefined, {
-                        style: 'currency',
-                        currency: 'RMB',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                    }),
-                    nbNewOrders,
-                    pendingOrders,
-                });
-                return pendingOrders;
-            })
-            .then(pendingOrders => pendingOrders.map(order => order.customer_id))
-            .then(customerIds => restClient(GET_MANY, 'customers', { ids: customerIds }))
-            .then(response => response.data)
-            .then(customers => customers.reduce((prev, customer) => {
-                prev[customer.id] = customer; // eslint-disable-line no-param-reassign
-                return prev;
-            }, {}))
-            .then(customers => this.setState({ pendingOrdersCustomers: customers }));
+        // restClient(GET_LIST, 'commands', {
+        //         filter: { date_gte: d.toISOString() },
+        //         sort: { field: 'date', order: 'DESC' },
+        //         pagination: { page: 1, perPage: 50 },
+        //     })
+        //     .then(response => response.data
+        //         .filter(order => order.status !== 'cancelled')
+        //         .reduce((stats, order) => {
+        //             if (order.status !== 'cancelled') {
+        //                 stats.revenue += order.total;
+        //                 stats.nbNewOrders++;
+        //             }
+        //             if (order.status === 'ordered') {
+        //                 stats.pendingOrders.push(order);
+        //             }
+        //             return stats;
+        //         }, { revenue: 0, nbNewOrders: 0, pendingOrders: [] })
+        //     )
+        //     .then(({ revenue, nbNewOrders, pendingOrders }) => {
+        //         this.setState({
+        //             revenue: revenue.toLocaleString(undefined, {
+        //                 style: 'currency',
+        //                 currency: 'RMB',
+        //                 minimumFractionDigits: 0,
+        //                 maximumFractionDigits: 0,
+        //             }),
+        //             nbNewOrders,
+        //             pendingOrders,
+        //         });
+        //         return pendingOrders;
+        //     })
+        //     .then(pendingOrders => pendingOrders.map(order => order.customer_id))
+        //     .then(customerIds => restClient(GET_MANY, 'customers', { ids: customerIds }))
+        //     .then(response => response.data)
+        //     .then(customers => customers.reduce((prev, customer) => {
+        //         prev[customer.id] = customer; // eslint-disable-line no-param-reassign
+        //         return prev;
+        //     }, {}))
+        //     .then(customers => this.setState({ pendingOrdersCustomers: customers }));
 
         restClient(GET_LIST, 'reviews', {
                 filter: { status: 'pending' },
@@ -85,15 +85,15 @@ class Dashboard extends Component {
             }, {}))
             .then(customers => this.setState({ pendingReviewsCustomers: customers }));
 
-        restClient(GET_LIST, 'customers', {
-                filter: { has_ordered: true, first_seen_gte: d.toISOString() },
-                sort: { field: 'first_seen', order: 'DESC' },
-                pagination: { page: 1, perPage: 100 },
+        restClient('Query', 'fpm_user', {
+                // filter: { has_ordered: true, first_seen_gte: d.toISOString() },
+                // sort: { field: 'first_seen', order: 'DESC' },
+                // pagination: { page: 1, perPage: 100 },
             })
-            .then(response => response.data)
-            .then(newCustomers => {
-                this.setState({ newCustomers });
-                this.setState({ nbNewCustomers: newCustomers.reduce(nb => ++nb, 0) })
+            .then(data => {
+                console.log(data)
+                this.setState({ newCustomers: data.rows});
+                this.setState({ nbNewCustomers: data.count})
             })
     }
 
@@ -112,7 +112,7 @@ class Dashboard extends Component {
         const { width } = this.props;
         return (
             <div>
-                {width === 1 && <AppBarMobile title="Posters Galore Admin" />}
+                {width === 1 && <AppBarMobile title="管理后台" />}
                 <Welcome style={styles.welcome} />
                 <div style={styles.flex}>
                     <div style={styles.leftCol}>
@@ -120,9 +120,9 @@ class Dashboard extends Component {
                             <MonthlyRevenue value={revenue} />
                             <NbNewOrders value={nbNewOrders} />
                         </div>
-                        <div style={styles.singleCol}>
+                        {/*<div style={styles.singleCol}>
                             <PendingOrders orders={pendingOrders} customers={pendingOrdersCustomers} />
-                        </div>
+                        </div>*/}
                     </div>
                     <div style={styles.rightCol}>
                         <div style={styles.flex}>

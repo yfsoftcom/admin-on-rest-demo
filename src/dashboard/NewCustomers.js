@@ -14,12 +14,12 @@ export default translate(({ visitors = [], nb, translate }) => (
     <Card style={styles.card}>
         <CustomerIcon style={styles.icon} />
         <CardTitle title={nb} subtitle={translate('pos.dashboard.new_customers')} />
-        <List>
+        {/*<List>
             {visitors.map(record =>
                 <ListItem href={`#/customers/${record.id}`} key={record.id} leftAvatar={<Avatar src={`${record.avatar}?size=32x32`} />} >
                     {record.first_name} {record.last_name}
                 </ListItem>
             )}
-        </List>
+        </List>*/}
     </Card>
 ));
