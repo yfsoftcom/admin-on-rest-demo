@@ -6,7 +6,7 @@ import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import { translate } from 'admin-on-rest';
 
-import StarRatingField from '../reviews/StarRatingField';
+// import StarRatingField from '../reviews/StarRatingField';
 
 const styles = {
     titleLink: { textDecoration: 'none', color: '#000' },
@@ -20,7 +20,7 @@ export default translate(({ reviews = [], customers = {}, nb, translate }) => (
     <Card style={styles.card}>
         <CommentIcon style={styles.icon} />
         <CardTitle title={<Link to={location} style={styles.titleLink}>{nb}</Link>} subtitle={translate('pos.dashboard.pending_reviews')} />
-        <List>
+        {/*<List>
             {reviews.map(record =>
                 <ListItem
                     key={record.id}
@@ -31,6 +31,6 @@ export default translate(({ reviews = [], customers = {}, nb, translate }) => (
                     leftAvatar={customers[record.customer_id] ? <Avatar src={`${customers[record.customer_id].avatar}?size=32x32`} /> : <Avatar />}
                 />
             )}
-        </List>
+        </List>*/}
     </Card>
 ));

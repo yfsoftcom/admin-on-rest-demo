@@ -89,23 +89,27 @@ export default {
             },
             welcome: {
                 title: '欢迎使用',
-                subtitle: 'FPM通用后台.',
+                subtitle: 'Admin-of-fpm V1.0.0 .',
                 aor_button: 'Admin-on-rest website',
                 demo_button: 'Source for this demo',
             },
         },
     },
     resources: {
-        customers: {
+        users: {
             name: '用户 |||| Customers',
             fields: {
                 commands: '订单',
                 groups: '分组',
+                createAt: '创建时间',
+                phone: '手机',
+                email: '邮箱',
+                bindflag: '是否激活',
                 last_seen_gte: '上次登录时间',
-                name: '姓名',
+                name: '用户名',
             },
             tabs: {
-                identity: 'ID',
+                identity: '基本信息',
                 address: '地址',
                 orders: '订单',
                 reviews: '评价',

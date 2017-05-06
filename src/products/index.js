@@ -21,8 +21,8 @@ import Icon from 'material-ui/svg-icons/image/collections';
 import Chip from 'material-ui/Chip';
 import RichTextInput from 'aor-rich-text-input';
 
-import CustomerReferenceField from '../visitors/CustomerReferenceField';
-import StarRatingField from '../reviews/StarRatingField';
+// import CustomerReferenceField from '../visitors/CustomerReferenceField';
+// import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
 import Poster from './Poster';
 
@@ -100,8 +100,8 @@ export const ProductEdit = (props) => (
                 <ReferenceManyField reference="reviews" target="product_id" addLabel={false}>
                     <Datagrid>
                         <DateField source="date" />
-                        <CustomerReferenceField />
-                        <StarRatingField />
+                        {/*<CustomerReferenceField />*/}
+                        {/*<StarRatingField />*/}
                         <TextField source="comment" style={{ maxWidth: '20em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} />
                         <TextField source="status" />
                         <EditButton />

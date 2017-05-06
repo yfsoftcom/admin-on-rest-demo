@@ -1,5 +1,5 @@
 data = {
-  "customers": [
+  "users": [
     {
       "id": 0,
       "first_name": "Maude",
